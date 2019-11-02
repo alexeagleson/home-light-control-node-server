@@ -1,0 +1,20 @@
+{
+  "name": "tplink",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "tsc --project ./ && node dist/server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "tplink-smarthome-api": "^1.2.0",
+    "typescript": "^3.7.0-beta"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.6",
+    "@types/express": "^4.17.1",
+    "@types/node": "^12.11.1"
+  }
+}
