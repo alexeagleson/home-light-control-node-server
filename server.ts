@@ -12,7 +12,9 @@ const plugs = {
   hs105_1: "192.168.1.206",
   hs105_2: "192.168.1.207",
   hs105_mini_1: "192.168.1.208",
-  hs105_mini_2: "192.168.1.209"
+  hs105_mini_2: "192.168.1.209",
+  hs105_mini_3: "192.168.1.212",
+  hs105_mini_4: "192.168.1.213"
 };
 
 // var whitelist = ["https://48oak.ca", "https://www.48oak.ca"];
@@ -43,12 +45,11 @@ app.use(express.urlencoded({ extended: false }));
 //   cert: fs.readFileSync("./certificate.crt")
 // };
 
-
 Object.keys(plugs).forEach((key: keyof typeof plugs) => {
   app.post(`/${key}`, (req, res) => {
     client.getDevice({ host: plugs[key] }).then((device: any) => {
       device.setPowerState(req.body.on);
-      console.log(req.body)
+      console.log(req.body);
       res.status(200).json({ new_state: req.body.on });
     });
   });
@@ -56,7 +57,7 @@ Object.keys(plugs).forEach((key: keyof typeof plugs) => {
 
 Object.keys(plugs).forEach((key: keyof typeof plugs) => {
   app.get(`/${key}`, (req, res) => {
-    console.log('request received')
+    console.log("request received");
     client.getDevice({ host: plugs[key] }).then((device: any) => {
       device.getSysInfo().then((sysInfo: any) => res.status(200).json(sysInfo));
     });
